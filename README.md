@@ -53,6 +53,12 @@ public final class HelloModule implements CubixModule {
 - `player.wallet()` : coins et cristaux. Le solde se lit tout de suite ; un ajout ou un retrait
   est écrit en base hors du thread de jeu et ne passe jamais sous zéro
   (`wallet.take(Currency.COINS, 100).thenAccept(ok -> …)`). Ils restent cosmétiques.
+- `Menu` : menus en coffre (1 à 6 lignes), icônes (`Icon.of`, `Icon.head`, `glowing()`),
+  bordure et remplissage, boutons avec le type de clic, contenu modifiable une fois ouvert
+  (`MenuView.set`). Un menu ouvert depuis un autre reçoit un bouton « Retour » (coin en bas à
+  gauche, ou `backSlot`, ou `withoutBack`). `player.openMenu(menu)`.
+- `player.sidebar()` : la barre de côté, `show(titre, lignes)` aussi souvent que voulu (seules
+  les lignes changées partent au client).
 - `Messages` et `MessageKey` : textes traduits dans `lang/*.properties`, avec anti-spam.
 - `EventBus` : `PlayerJoinEvent`, `PlayerQuitEvent`, `PlayerRankChangeEvent`.
 - `Scheduler` : tâches sur le thread de jeu ou en arrière-plan, annulées à l'arrêt du module.

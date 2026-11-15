@@ -1,7 +1,10 @@
 package fr.cubixmc.api.player;
 
 import fr.cubixmc.api.economy.Wallet;
+import fr.cubixmc.api.menu.Menu;
+import fr.cubixmc.api.menu.MenuView;
 import fr.cubixmc.api.rank.Rank;
+import fr.cubixmc.api.sidebar.Sidebar;
 import java.util.Locale;
 import java.util.UUID;
 import net.kyori.adventure.audience.Audience;
@@ -31,4 +34,13 @@ public interface CubixPlayer extends Audience {
 
     /** Ses coins et cristaux. */
     Wallet wallet();
+
+    /** Ouvre un menu (en ferme un autre s'il y en avait un). Sur le thread de jeu. */
+    MenuView openMenu(Menu menu);
+
+    /** Ferme le menu ouvert, s'il y en a un. */
+    void closeMenu();
+
+    /** Sa barre de côté. */
+    Sidebar sidebar();
 }
