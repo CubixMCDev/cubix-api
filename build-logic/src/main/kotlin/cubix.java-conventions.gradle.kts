@@ -33,6 +33,9 @@ dependencies {
 }
 
 tasks.withType<JavaCompile>().configureEach {
+    // spotlessApply réécrit les sources : compiler en même temps fait lire à Error Prone un
+    // fichier qui change sous ses yeux (plantage IndexOutOfBounds dans getSourceCode).
+    mustRunAfter("spotlessApply")
     options.encoding = "UTF-8"
     options.release = version("java").toInt()
     options.compilerArgs.addAll(listOf("-Xlint:all,-processing,-serial", "-Werror", "-parameters"))
@@ -44,9 +47,6 @@ tasks.withType<JavaCompile>().configureEach {
         check("NullAway", CheckSeverity.ERROR)
         option("NullAway:AnnotatedPackages", "fr.cubixmc")
         option("NullAway:JSpecifyMode", "true")
-        // Error Prone 2.52 plante sur ce contrôle avec javac 25 (IndexOutOfBounds dans
-        // VisitorState.getSourceCode). À réactiver quand une version corrigée sortira.
-        disable("ParameterName")
     }
 }
 
