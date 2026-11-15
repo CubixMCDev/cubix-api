@@ -20,6 +20,10 @@ mariadb = "3.5.11"
 flyway = "13.12.2"
 palantir-java-format = "2.103.0"
 testcontainers = "2.0.5"
+# renovate: datasource=github-releases depName=ViaVersion/ViaVersion
+viaversion = "5.12.2"
+# renovate: datasource=github-releases depName=ViaVersion/ViaBackwards
+viabackwards = "5.12.2"
 
 [libraries]
 minestom = { module = "net.minestom:minestom", version.ref = "minestom" }
@@ -51,5 +55,4 @@ gradle-spotless = { module = "com.diffplug.spotless:spotless-plugin-gradle", ver
 [plugins]
 shadow = { id = "com.gradleup.shadow", version = "9.6.1" }
 maven-publish = { id = "com.vanniktech.maven.publish", version = "0.37.0" }
-run-velocity = { id = "xyz.jpenilla.run-velocity", version = "3.1.0" }
 foojay = { id = "org.gradle.toolchains.foojay-resolver-convention", version = "1.0.0" }
