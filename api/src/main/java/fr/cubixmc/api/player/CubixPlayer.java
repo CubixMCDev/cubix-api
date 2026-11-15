@@ -1,5 +1,6 @@
 package fr.cubixmc.api.player;
 
+import fr.cubixmc.api.economy.Wallet;
 import fr.cubixmc.api.rank.Rank;
 import java.util.Locale;
 import java.util.UUID;
@@ -27,4 +28,7 @@ public interface CubixPlayer extends Audience {
 
     /** Permission accordée par le grade du joueur ({@code cubix.staff}, {@code cubix.perk.hub.fly}…). */
     boolean hasPermission(String permission);
+
+    /** Ses coins et cristaux. */
+    Wallet wallet();
 }

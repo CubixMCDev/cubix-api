@@ -46,6 +46,17 @@ public final class HelloModule implements CubixModule {
 }
 ```
 
+## Ce qu'offre l'API
+
+- `CubixPlayer` : pseudo, langue, Bedrock, grade (`rank()`, `hasPermission`), et un `Audience`
+  d'Adventure pour les messages, titres, sons.
+- `player.wallet()` : coins et cristaux. Le solde se lit tout de suite ; un ajout ou un retrait
+  est écrit en base hors du thread de jeu et ne passe jamais sous zéro
+  (`wallet.take(Currency.COINS, 100).thenAccept(ok -> …)`). Ils restent cosmétiques.
+- `Messages` et `MessageKey` : textes traduits dans `lang/*.properties`, avec anti-spam.
+- `EventBus` : `PlayerJoinEvent`, `PlayerQuitEvent`, `PlayerRankChangeEvent`.
+- `Scheduler` : tâches sur le thread de jeu ou en arrière-plan, annulées à l'arrêt du module.
+
 ## Règles
 
 - **Identifiant** : minuscules, chiffres et tirets (`rush`, `hub-games`).
