@@ -1,6 +1,7 @@
 package fr.cubixmc.api.module;
 
 import fr.cubixmc.api.event.EventBus;
+import fr.cubixmc.api.hologram.Holograms;
 import fr.cubixmc.api.scheduler.Scheduler;
 import fr.cubixmc.api.server.CubixServer;
 import fr.cubixmc.api.text.Messages;
@@ -28,4 +29,7 @@ public interface ModuleContext {
 
     /** Messages du module, lus dans les fichiers {@code lang/*.properties} de son jar. */
     Messages messages();
+
+    /** Hologrammes du module, retirés automatiquement à son arrêt. */
+    Holograms holograms();
 }

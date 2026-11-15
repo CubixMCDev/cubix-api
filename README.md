@@ -63,6 +63,8 @@ public final class HelloModule implements CubixModule {
   droit pour leur action.
 - `player.play(mode)`, `player.connect(serveur)`, `player.setLanguage(langue)`,
   `player.teleportToSpawn()` ; `server.networkServers()` et `server.networkPlayerCount()`.
+- `context.holograms()` : textes flottants propres à chaque joueur (sa langue, ses chiffres),
+  `refresh()` pour les mettre à jour, retirés à l'arrêt du module.
 - `Messages` et `MessageKey` : textes traduits dans `lang/*.properties`, avec anti-spam.
 - `EventBus` : `PlayerJoinEvent`, `PlayerQuitEvent`, `PlayerRankChangeEvent`.
 - `Scheduler` : tâches sur le thread de jeu ou en arrière-plan, annulées à l'arrêt du module.
