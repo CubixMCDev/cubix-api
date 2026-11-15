@@ -8,6 +8,7 @@ import fr.cubixmc.api.sidebar.Sidebar;
 import java.util.Locale;
 import java.util.UUID;
 import net.kyori.adventure.audience.Audience;
+import org.jspecify.annotations.Nullable;
 
 /**
  * Un joueur connecté à ce serveur.
@@ -55,4 +56,17 @@ public interface CubixPlayer extends Audience {
      * @param mode type des serveurs de jeu ({@code rush_1v1}, {@code hungergames}…)
      */
     void play(String mode);
+
+    /** L'envoie sur ce serveur du réseau (hub choisi dans un menu…). */
+    void connect(String server);
+
+    /**
+     * Change sa langue pour tout le réseau, comme {@code /lang}.
+     *
+     * @param locale une langue proposée, ou {@code null} pour suivre celle de son client
+     */
+    void setLanguage(@Nullable Locale locale);
+
+    /** Le ramène au point d'apparition du serveur. */
+    void teleportToSpawn();
 }

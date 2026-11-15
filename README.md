@@ -59,6 +59,10 @@ public final class HelloModule implements CubixModule {
   gauche, ou `backSlot`, ou `withoutBack`). `player.openMenu(menu)`.
 - `player.sidebar()` : la barre de côté, `show(titre, lignes)` aussi souvent que voulu (seules
   les lignes changées partent au client).
+- `player.hotbar()` : objets verrouillés de la barre rapide (ni déplaçables ni jetables), clic
+  droit pour leur action.
+- `player.play(mode)`, `player.connect(serveur)`, `player.setLanguage(langue)`,
+  `player.teleportToSpawn()` ; `server.networkServers()` et `server.networkPlayerCount()`.
 - `Messages` et `MessageKey` : textes traduits dans `lang/*.properties`, avec anti-spam.
 - `EventBus` : `PlayerJoinEvent`, `PlayerQuitEvent`, `PlayerRankChangeEvent`.
 - `Scheduler` : tâches sur le thread de jeu ou en arrière-plan, annulées à l'arrêt du module.

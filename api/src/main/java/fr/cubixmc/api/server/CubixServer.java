@@ -21,6 +21,12 @@ public interface CubixServer {
     /** Joueurs sur tout le réseau (ce serveur seul s'il tourne sans Redis), relu toutes les 5 secondes. */
     int networkPlayerCount();
 
+    /** Les serveurs du réseau (ce serveur seul sans Redis), par nom, relus toutes les 5 secondes. */
+    List<NetworkServer> networkServers();
+
+    /** Type de ce serveur ({@code hub}, {@code rush_1v1}…). */
+    String type();
+
     /** Tous les grades, dans l'ordre d'affichage (le plus important en premier). */
     List<Rank> ranks();
 
