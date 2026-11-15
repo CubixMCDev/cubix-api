@@ -1,5 +1,6 @@
 package fr.cubixmc.api.server;
 
+import fr.cubixmc.api.boost.Boosts;
 import fr.cubixmc.api.player.CubixPlayer;
 import fr.cubixmc.api.rank.Rank;
 import java.util.Collection;
@@ -26,6 +27,9 @@ public interface CubixServer {
 
     /** Type de ce serveur ({@code hub}, {@code rush_1v1}…). */
     String type();
+
+    /** Les boosts de gains du réseau. */
+    Boosts boosts();
 
     /** Tous les grades, dans l'ordre d'affichage (le plus important en premier). */
     List<Rank> ranks();
