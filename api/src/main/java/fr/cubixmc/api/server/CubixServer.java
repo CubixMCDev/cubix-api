@@ -18,6 +18,9 @@ public interface CubixServer {
 
     Optional<CubixPlayer> player(UUID uuid);
 
+    /** Joueurs sur tout le réseau (ce serveur seul s'il tourne sans Redis), relu toutes les 5 secondes. */
+    int networkPlayerCount();
+
     /** Tous les grades, dans l'ordre d'affichage (le plus important en premier). */
     List<Rank> ranks();
 

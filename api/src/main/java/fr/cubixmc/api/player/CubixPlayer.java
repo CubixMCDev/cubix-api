@@ -43,4 +43,16 @@ public interface CubixPlayer extends Audience {
 
     /** Sa barre de côté. */
     Sidebar sidebar();
+
+    /** Les objets verrouillés de sa barre rapide. */
+    Hotbar hotbar();
+
+    /**
+     * Cherche une partie pour lui (et son groupe s'il en est le chef), comme {@code /play <mode>} :
+     * le proxy l'envoie sur un serveur libre, ou le met dans la file. Il est prévenu dans sa langue
+     * si le mode n'existe pas ou s'il n'est pas le chef de son groupe.
+     *
+     * @param mode type des serveurs de jeu ({@code rush_1v1}, {@code hungergames}…)
+     */
+    void play(String mode);
 }
