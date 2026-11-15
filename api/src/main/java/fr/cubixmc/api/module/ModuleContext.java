@@ -3,6 +3,7 @@ package fr.cubixmc.api.module;
 import fr.cubixmc.api.event.EventBus;
 import fr.cubixmc.api.scheduler.Scheduler;
 import fr.cubixmc.api.server.CubixServer;
+import fr.cubixmc.api.text.Messages;
 import java.nio.file.Path;
 import org.slf4j.Logger;
 
@@ -24,4 +25,7 @@ public interface ModuleContext {
 
     /** Tâches du module, annulées automatiquement à son arrêt. */
     Scheduler scheduler();
+
+    /** Messages du module, lus dans les fichiers {@code lang/*.properties} de son jar. */
+    Messages messages();
 }

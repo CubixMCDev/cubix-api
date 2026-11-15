@@ -30,6 +30,8 @@ minestom = { module = "net.minestom:minestom", version.ref = "minestom" }
 minestom-testing = { module = "net.minestom:testing", version.ref = "minestom" }
 velocity-api = { module = "com.velocitypowered:velocity-api", version.ref = "velocity" }
 adventure-api = { module = "net.kyori:adventure-api", version.ref = "adventure" }
+adventure-minimessage = { module = "net.kyori:adventure-text-minimessage", version.ref = "adventure" }
+adventure-plain = { module = "net.kyori:adventure-text-serializer-plain", version.ref = "adventure" }
 gson = { module = "com.google.code.gson:gson", version.ref = "gson" }
 slf4j-api = { module = "org.slf4j:slf4j-api", version.ref = "slf4j" }
 logback-classic = { module = "ch.qos.logback:logback-classic", version.ref = "logback" }

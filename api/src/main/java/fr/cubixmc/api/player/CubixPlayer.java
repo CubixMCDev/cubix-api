@@ -1,6 +1,7 @@
 package fr.cubixmc.api.player;
 
 import fr.cubixmc.api.rank.Rank;
+import java.util.Locale;
 import java.util.UUID;
 import net.kyori.adventure.audience.Audience;
 
@@ -17,6 +18,9 @@ public interface CubixPlayer extends Audience {
 
     /** Joueur Bedrock (via Geyser) : le moteur adapte alors menus et affichages. */
     boolean isBedrock();
+
+    /** Langue des messages : choisie par le joueur, sinon celle de son client, sinon le français. */
+    Locale locale();
 
     /** Grade actuel. Suit les changements faits ailleurs sur le réseau. */
     Rank rank();
