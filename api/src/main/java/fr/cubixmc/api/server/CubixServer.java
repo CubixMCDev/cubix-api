@@ -1,7 +1,9 @@
 package fr.cubixmc.api.server;
 
 import fr.cubixmc.api.player.CubixPlayer;
+import fr.cubixmc.api.rank.Rank;
 import java.util.Collection;
+import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -15,4 +17,9 @@ public interface CubixServer {
     Collection<CubixPlayer> onlinePlayers();
 
     Optional<CubixPlayer> player(UUID uuid);
+
+    /** Tous les grades, dans l'ordre d'affichage (le plus important en premier). */
+    List<Rank> ranks();
+
+    Optional<Rank> rank(String id);
 }
