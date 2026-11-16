@@ -68,6 +68,14 @@ public interface CubixPlayer extends Audience {
      */
     void play(String mode);
 
+    /**
+     * Exécute une commande comme s'il l'avait tapée, sous ses permissions : celles de ce serveur,
+     * sinon celles du proxy ({@code friends add Pipo}, {@code party invite Pipo}…).
+     *
+     * @param command avec ou sans la barre oblique
+     */
+    void performCommand(String command);
+
     /** L'envoie sur ce serveur du réseau (hub choisi dans un menu…). */
     void connect(String server);
 
