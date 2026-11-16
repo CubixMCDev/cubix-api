@@ -4,6 +4,7 @@ import fr.cubixmc.api.boost.Boosts;
 import fr.cubixmc.api.player.CubixPlayer;
 import fr.cubixmc.api.progress.Progress;
 import fr.cubixmc.api.rank.Rank;
+import fr.cubixmc.api.world.Effects;
 import fr.cubixmc.api.world.WorldRules;
 import java.util.Collection;
 import java.util.List;
@@ -38,6 +39,9 @@ public interface CubixServer {
 
     /** Les règles du monde de ce serveur (protection, vide, déplacements du lobby). */
     WorldRules world();
+
+    /** Particules et feux d'artifice. */
+    Effects effects();
 
     /** Tous les grades, dans l'ordre d'affichage (le plus important en premier). */
     List<Rank> ranks();

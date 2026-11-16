@@ -5,6 +5,7 @@ import fr.cubixmc.api.menu.Menu;
 import fr.cubixmc.api.menu.MenuView;
 import fr.cubixmc.api.rank.Rank;
 import fr.cubixmc.api.sidebar.Sidebar;
+import fr.cubixmc.api.world.Position;
 import java.util.Locale;
 import java.util.UUID;
 import java.util.concurrent.CompletableFuture;
@@ -76,6 +77,12 @@ public interface CubixPlayer extends Audience {
      * @param locale une langue proposée, ou {@code null} pour suivre celle de son client
      */
     void setLanguage(@Nullable Locale locale);
+
+    /** Où il se trouve (ses pieds). */
+    Position position();
+
+    /** Le téléporte sur ce serveur, en gardant son regard. */
+    void teleport(Position position);
 
     /** Le ramène au point d'apparition du serveur. */
     void teleportToSpawn();
