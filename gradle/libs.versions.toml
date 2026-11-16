@@ -9,6 +9,8 @@ adventure = "5.2.0"
 gson = "2.14.0"
 slf4j = "2.0.20"
 logback = "1.6.7"
+# Celle embarquée par Velocity (proxy, compileOnly) : la suivre, pas la devancer.
+log4j = "2.26.1"
 jspecify = "1.0.1"
 errorprone = "2.52.0"
 nullaway = "0.14.3"
@@ -35,6 +37,7 @@ adventure-plain = { module = "net.kyori:adventure-text-serializer-plain", versio
 gson = { module = "com.google.code.gson:gson", version.ref = "gson" }
 slf4j-api = { module = "org.slf4j:slf4j-api", version.ref = "slf4j" }
 logback-classic = { module = "ch.qos.logback:logback-classic", version.ref = "logback" }
+log4j-core = { module = "org.apache.logging.log4j:log4j-core", version.ref = "log4j" }
 jspecify = { module = "org.jspecify:jspecify", version.ref = "jspecify" }
 errorprone-core = { module = "com.google.errorprone:error_prone_core", version.ref = "errorprone" }
 nullaway = { module = "com.uber.nullaway:nullaway", version.ref = "nullaway" }
