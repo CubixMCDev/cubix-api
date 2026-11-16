@@ -67,6 +67,8 @@ public final class HelloModule implements CubixModule {
   `refresh()` pour les mettre à jour, retirés à l'arrêt du module.
 - `server.boosts()` : boosts de gains ; `reward(joueur, jeu, base)` paie une partie avec boosts et
   bonus de grade.
+- `server.progress()` : `record(joueur, jeu, action, n)` compte les statistiques, fait avancer
+  les quêtes du jour et débloque les succès ; `player.level()` et l'expérience.
 - `Messages` et `MessageKey` : textes traduits dans `lang/*.properties`, avec anti-spam.
 - `EventBus` : `PlayerJoinEvent`, `PlayerQuitEvent`, `PlayerRankChangeEvent`.
 - `Scheduler` : tâches sur le thread de jeu ou en arrière-plan, annulées à l'arrêt du module.
