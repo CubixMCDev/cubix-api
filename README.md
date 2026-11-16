@@ -69,6 +69,7 @@ public final class HelloModule implements CubixModule {
   bonus de grade.
 - `server.progress()` : `record(joueur, jeu, action, n)` compte les statistiques, fait avancer
   les quêtes du jour et débloque les succès ; `player.level()` et l'expérience.
+- `player.setRejoinable(true)` : retour dans la partie après une déconnexion (15 minutes).
 - `server.world()` : protection du monde, retour sous le vide, vol et sauts multiples des grades.
 - `Messages` et `MessageKey` : textes traduits dans `lang/*.properties`, avec anti-spam.
 - `EventBus` : `PlayerJoinEvent`, `PlayerQuitEvent`, `PlayerRankChangeEvent`.

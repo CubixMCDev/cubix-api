@@ -78,4 +78,10 @@ public interface CubixPlayer extends Audience {
 
     /** Le ramène au point d'apparition du serveur. */
     void teleportToSpawn();
+
+    /**
+     * S'il se déconnecte, peut-il revenir ici (dans les 15 minutes) ? Un jeu le met à vrai au
+     * début de la partie, à faux quand le joueur est éliminé ou que la partie se termine.
+     */
+    void setRejoinable(boolean rejoinable);
 }
