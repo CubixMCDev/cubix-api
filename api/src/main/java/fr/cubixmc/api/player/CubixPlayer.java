@@ -36,6 +36,15 @@ public interface CubixPlayer extends Audience {
     /** Ses coins et cristaux. */
     Wallet wallet();
 
+    /** Son niveau (1 au départ). */
+    int level();
+
+    /** Son expérience dans ce niveau. */
+    int experience();
+
+    /** L'expérience qu'il faut pour passer au niveau suivant. */
+    int experienceNeeded();
+
     /** Ouvre un menu (en ferme un autre s'il y en avait un). Sur le thread de jeu. */
     MenuView openMenu(Menu menu);
 

@@ -2,6 +2,7 @@ package fr.cubixmc.api.server;
 
 import fr.cubixmc.api.boost.Boosts;
 import fr.cubixmc.api.player.CubixPlayer;
+import fr.cubixmc.api.progress.Progress;
 import fr.cubixmc.api.rank.Rank;
 import java.util.Collection;
 import java.util.List;
@@ -30,6 +31,9 @@ public interface CubixServer {
 
     /** Les boosts de gains du réseau. */
     Boosts boosts();
+
+    /** Statistiques, quêtes, succès et niveau des joueurs. */
+    Progress progress();
 
     /** Tous les grades, dans l'ordre d'affichage (le plus important en premier). */
     List<Rank> ranks();
