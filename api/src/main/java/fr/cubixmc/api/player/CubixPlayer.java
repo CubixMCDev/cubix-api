@@ -7,6 +7,7 @@ import fr.cubixmc.api.rank.Rank;
 import fr.cubixmc.api.sidebar.Sidebar;
 import java.util.Locale;
 import java.util.UUID;
+import java.util.concurrent.CompletableFuture;
 import net.kyori.adventure.audience.Audience;
 import org.jspecify.annotations.Nullable;
 
@@ -84,4 +85,16 @@ public interface CubixPlayer extends Audience {
      * début de la partie, à faux quand le joueur est éliminé ou que la partie se termine.
      */
     void setRejoinable(boolean rejoinable);
+
+    /** Une de ses préférences, lue à son arrivée sur ce serveur. Ne bloque jamais. */
+    <T> T preference(Preference<T> preference);
+
+    /** Change une de ses préférences, pour tout le réseau. */
+    <T> CompletableFuture<Void> setPreference(Preference<T> preference, T value);
+
+    /** Cache (ou montre à nouveau) les autres joueurs à ses yeux, sur ce serveur. Le staff reste visible. */
+    void setPlayersHidden(boolean hidden);
+
+    /** Les autres joueurs lui sont-ils cachés ? */
+    boolean playersHidden();
 }
