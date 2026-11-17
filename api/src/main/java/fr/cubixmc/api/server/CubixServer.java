@@ -1,6 +1,7 @@
 package fr.cubixmc.api.server;
 
 import fr.cubixmc.api.boost.Boosts;
+import fr.cubixmc.api.cosmetic.Cosmetics;
 import fr.cubixmc.api.daily.DailyRewards;
 import fr.cubixmc.api.player.CubixPlayer;
 import fr.cubixmc.api.progress.Progress;
@@ -50,6 +51,9 @@ public interface CubixServer {
 
     /** La récompense du jour. */
     DailyRewards dailyRewards();
+
+    /** Cosmétiques et coffres mystère. */
+    Cosmetics cosmetics();
 
     /** Tous les grades, dans l'ordre d'affichage (le plus important en premier). */
     List<Rank> ranks();
