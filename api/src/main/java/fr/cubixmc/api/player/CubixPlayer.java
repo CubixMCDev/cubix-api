@@ -91,6 +91,15 @@ public interface CubixPlayer extends Audience {
     /** Où il se trouve (ses pieds). */
     Position position();
 
+    /** Son regard à l'horizontale, en degrés (0 : vers le sud, comme Minecraft). */
+    float yaw();
+
+    /** Touche-t-il le sol ? */
+    boolean onGround();
+
+    /** Le propulse, en blocs par tick (comme Minecraft : 1 vers le haut fait un bond). */
+    void setVelocity(double x, double y, double z);
+
     /** Le téléporte sur ce serveur, en gardant son regard. */
     void teleport(Position position);
 

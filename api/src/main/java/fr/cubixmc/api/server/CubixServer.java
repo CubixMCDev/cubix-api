@@ -1,6 +1,7 @@
 package fr.cubixmc.api.server;
 
 import fr.cubixmc.api.boost.Boosts;
+import fr.cubixmc.api.daily.DailyRewards;
 import fr.cubixmc.api.player.CubixPlayer;
 import fr.cubixmc.api.progress.Progress;
 import fr.cubixmc.api.rank.Rank;
@@ -46,6 +47,9 @@ public interface CubixServer {
 
     /** Amis, groupes et profils du réseau. */
     Social social();
+
+    /** La récompense du jour. */
+    DailyRewards dailyRewards();
 
     /** Tous les grades, dans l'ordre d'affichage (le plus important en premier). */
     List<Rank> ranks();

@@ -1,5 +1,8 @@
 package fr.cubixmc.api.world;
 
+import java.util.List;
+import net.kyori.adventure.text.Component;
+
 /**
  * Les règles du monde de ce serveur, réglées par son module (le hub les protège toutes, un jeu
  * choisit les siennes). Tout est coupé au départ.
@@ -26,4 +29,16 @@ public interface WorldRules {
      * double, triple ou quadruple saut pour {@code cubix.perk.hub.jump.2} à {@code .4}.
      */
     void setLobbyMovement(boolean value);
+
+    /** Le type du bloc à cet endroit ({@code minecraft:sea_lantern}, {@code minecraft:air}…). */
+    String blockAt(Position position);
+
+    /**
+     * Écrit sur la face avant d'un panneau déjà posé (quatre lignes au plus). Sans effet si le bloc
+     * n'est pas un panneau.
+     */
+    void setSignText(Position position, List<Component> lines);
+
+    /** Le point d'apparition du serveur. */
+    Position spawn();
 }

@@ -2,6 +2,7 @@ package fr.cubixmc.api.module;
 
 import fr.cubixmc.api.event.EventBus;
 import fr.cubixmc.api.hologram.Holograms;
+import fr.cubixmc.api.npc.Npcs;
 import fr.cubixmc.api.scheduler.Scheduler;
 import fr.cubixmc.api.server.CubixServer;
 import fr.cubixmc.api.text.Messages;
@@ -32,4 +33,7 @@ public interface ModuleContext {
 
     /** Hologrammes du module, retirés automatiquement à son arrêt. */
     Holograms holograms();
+
+    /** Les personnages cliquables de ce module, retirés à son arrêt. */
+    Npcs npcs();
 }
