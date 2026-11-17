@@ -1,6 +1,7 @@
 package fr.cubixmc.api.boost;
 
 import fr.cubixmc.api.player.CubixPlayer;
+import java.time.Duration;
 import java.time.Instant;
 import java.util.List;
 import java.util.Optional;
@@ -51,4 +52,27 @@ public interface Boosts {
      * @return les coins réellement crédités
      */
     CompletableFuture<Integer> reward(CubixPlayer player, String game, int baseCoins);
+
+    /**
+     * Comme {@link #reward(CubixPlayer, String, int)}, mais selon la durée de la partie : rien pour
+     * une partie expédiée, la moitié au début, le barème plein ensuite (réglable).
+     */
+    CompletableFuture<Integer> reward(CubixPlayer player, String game, int baseCoins, Duration played);
+
+    /**
+     * Paie une victoire à un mini-jeu du hub, dans la limite quotidienne (partagée par tous les
+     * hubs) : au-delà, la victoire compte toujours pour les statistiques mais ne rapporte rien.
+     *
+     * @return les coins crédités (0 au-delà du plafond)
+     */
+    CompletableFuture<Integer> rewardMinigameWin(CubixPlayer player);
+
+    /** Une heure bonus : tous les gains de partie multipliés ({@code percent} : 200 = × 2). */
+    record BonusHour(int percent, Instant startsAt, Instant endsAt) {}
+
+    /** L'heure bonus en cours. */
+    Optional<BonusHour> bonusHour();
+
+    /** La prochaine heure bonus de la semaine. */
+    Optional<BonusHour> nextBonusHour();
 }

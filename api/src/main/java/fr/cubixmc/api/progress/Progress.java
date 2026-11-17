@@ -71,6 +71,9 @@ public interface Progress {
     /** Les meilleurs sur un compteur. */
     CompletableFuture<List<Ranked>> top(String game, String action, int limit);
 
+    /** Le classement du mois en cours : remis à zéro le 1er, à l'heure de Bruxelles. */
+    CompletableFuture<List<Ranked>> topOfMonth(String game, String action, int limit);
+
     /** Le nom d'une quête, dans cette langue. */
     Component questName(Locale locale, String questId);
 
