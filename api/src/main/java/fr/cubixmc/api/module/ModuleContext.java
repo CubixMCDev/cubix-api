@@ -1,5 +1,6 @@
 package fr.cubixmc.api.module;
 
+import fr.cubixmc.api.board.Boards;
 import fr.cubixmc.api.event.EventBus;
 import fr.cubixmc.api.hologram.Holograms;
 import fr.cubixmc.api.npc.Npcs;
@@ -36,4 +37,7 @@ public interface ModuleContext {
 
     /** Les personnages cliquables de ce module, retirés à son arrêt. */
     Npcs npcs();
+
+    /** Les tableaux de ce module, retirés à son arrêt. */
+    Boards boards();
 }
