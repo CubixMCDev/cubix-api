@@ -9,7 +9,9 @@ import fr.cubixmc.api.world.Position;
 import java.util.Locale;
 import java.util.UUID;
 import java.util.concurrent.CompletableFuture;
+import java.util.function.Consumer;
 import net.kyori.adventure.audience.Audience;
+import net.kyori.adventure.text.Component;
 import org.jspecify.annotations.Nullable;
 
 /**
@@ -112,4 +114,15 @@ public interface CubixPlayer extends Audience {
 
     /** Les autres joueurs lui sont-ils cachés ? */
     boolean playersHidden();
+
+    /**
+     * Pose une question dans le chat (ferme le menu ouvert) : sa réponse suivante est captée, jamais
+     * diffusée. Seul moyen de saisir un texte pour un joueur Bedrock. {@code annuler} abandonne.
+     *
+     * @param answer reçoit la réponse, sur le fil du chat
+     */
+    void ask(Component question, Consumer<String> answer);
+
+    /** Est-ce sa première venue sur le réseau ? */
+    boolean firstVisit();
 }

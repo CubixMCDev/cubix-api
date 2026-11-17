@@ -4,6 +4,7 @@ import fr.cubixmc.api.boost.Boosts;
 import fr.cubixmc.api.player.CubixPlayer;
 import fr.cubixmc.api.progress.Progress;
 import fr.cubixmc.api.rank.Rank;
+import fr.cubixmc.api.social.Social;
 import fr.cubixmc.api.world.Effects;
 import fr.cubixmc.api.world.WorldRules;
 import java.util.Collection;
@@ -42,6 +43,9 @@ public interface CubixServer {
 
     /** Particules et feux d'artifice. */
     Effects effects();
+
+    /** Amis, groupes et profils du réseau. */
+    Social social();
 
     /** Tous les grades, dans l'ordre d'affichage (le plus important en premier). */
     List<Rank> ranks();
