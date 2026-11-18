@@ -51,6 +51,12 @@ public interface Hud {
      */
     void actionBar(CubixPlayer player, Component text);
 
+    /**
+     * Le logo CubixMC pour ce joueur : dessiné (pixel art du pack) s'il a le pack, en texte sinon.
+     * Pour un titre, la barre de côté, un message d'accueil.
+     */
+    Component logo(CubixPlayer player);
+
     /** Le joueur a-t-il le pack (la boussole lui est visible) ? */
     boolean equipped(CubixPlayer player);
 }
