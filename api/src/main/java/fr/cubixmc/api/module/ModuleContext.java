@@ -3,6 +3,7 @@ package fr.cubixmc.api.module;
 import fr.cubixmc.api.board.Boards;
 import fr.cubixmc.api.event.EventBus;
 import fr.cubixmc.api.hologram.Holograms;
+import fr.cubixmc.api.hud.Hud;
 import fr.cubixmc.api.npc.Npcs;
 import fr.cubixmc.api.scheduler.Scheduler;
 import fr.cubixmc.api.server.CubixServer;
@@ -40,4 +41,7 @@ public interface ModuleContext {
 
     /** Les tableaux de ce module, retirés à son arrêt. */
     Boards boards();
+
+    /** Le haut de l'écran des joueurs (boussole, ligne d'information). */
+    Hud hud();
 }

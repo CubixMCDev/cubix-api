@@ -30,4 +30,12 @@ public interface Holograms {
      * @param content les lignes pour ce joueur ; une liste vide ne montre rien
      */
     Hologram create(Position position, Function<CubixPlayer, List<Component>> content);
+
+    /**
+     * Un titre : le même hologramme, agrandi et sans fond (au-dessus d'un portail, d'une zone).
+     * Bedrock ne sait pas agrandir : il voit un hologramme ordinaire.
+     *
+     * @param scale l'agrandissement (2 ou 3 pour un titre)
+     */
+    Hologram title(Position position, float scale, Function<CubixPlayer, List<Component>> content);
 }
