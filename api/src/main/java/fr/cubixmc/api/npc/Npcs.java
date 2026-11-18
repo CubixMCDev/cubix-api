@@ -16,6 +16,8 @@ public interface Npcs {
      * Fait apparaître un personnage.
      *
      * @param look ce que le personnage porte (une tête, un bloc…)
+     * @param name le nom au-dessus, le même pour tous ; {@code Component.empty()} n'en montre pas
+     *     (un hologramme écrit alors le nom dans la langue de chacun)
      * @param onClick appelé au clic droit, sur le thread de jeu
      */
     Npc spawn(Position position, Icon look, Component name, Consumer<CubixPlayer> onClick);
