@@ -36,5 +36,29 @@ public interface Boards {
      * @param height hauteur en cartes
      * @param content ce que voit ce joueur ; appelé hors du thread de jeu
      */
-    Board create(Position topLeft, Facing facing, int width, int height, Function<CubixPlayer, List<Panel>> content);
+    default Board create(
+            Position topLeft, Facing facing, int width, int height, Function<CubixPlayer, List<Panel>> content) {
+        return create(topLeft, facing, width, height, Frame.NONE, content);
+    }
+
+    /** Pareil, entouré d'un cadre en blocs. */
+    Board create(
+            Position topLeft,
+            Facing facing,
+            int width,
+            int height,
+            Frame frame,
+            Function<CubixPlayer, List<Panel>> content);
+
+    /**
+     * Un cadre en vrais blocs autour du tableau : des baguettes penchées vers le centre (comme un
+     * biseau) et des coins posés en losange.
+     *
+     * @param block les baguettes ({@code minecraft:polished_blackstone}) ; vide : pas de cadre
+     * @param corner les coins ; vide : comme les baguettes
+     */
+    record Frame(String block, String corner) {
+
+        public static final Frame NONE = new Frame("", "");
+    }
 }
