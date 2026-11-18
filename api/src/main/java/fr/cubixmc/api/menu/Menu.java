@@ -1,10 +1,13 @@
 package fr.cubixmc.api.menu;
 
 import fr.cubixmc.api.player.CubixPlayer;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.function.Consumer;
+import java.util.function.IntFunction;
 import net.kyori.adventure.text.Component;
 import org.jspecify.annotations.Nullable;
 
@@ -20,6 +23,10 @@ import org.jspecify.annotations.Nullable;
  * faut. Il se place dans le coin en bas à gauche ({@link Builder#backSlot}), sauf si un vrai bouton
  * l'occupe ; {@link Builder#withoutBack} le retire. Fermer le menu oublie ce chemin. Le menu
  * précédent se rouvre tel qu'il a été décrit : un contenu qui change se décrit à nouveau.
+ *
+ * <p><b>Pages</b> : {@link Builder#paged} répartit une longue liste sur plusieurs pages ; le
+ * serveur ajoute lui-même les flèches « Page précédente » et « Page suivante » (dans la langue du
+ * joueur) et ouvre la page voulue sans allonger le chemin du Retour.
  *
  * <pre>{@code
  * Menu menu = Menu.builder(Component.text("Jeux"), 3)
@@ -37,12 +44,22 @@ public final class Menu {
     /** Pas de bouton Retour. */
     public static final int NO_BACK = -1;
 
+    /**
+     * Une liste en plusieurs pages.
+     *
+     * @param page la page affichée, comptée de 0
+     * @param pages le nombre de pages (au moins 1)
+     * @param open décrit le menu d'une autre page
+     */
+    public record Paging(int page, int pages, IntFunction<Menu> open, int previousSlot, int nextSlot) {}
+
     private final Component title;
     private final int rows;
     private final Map<Integer, Button> buttons;
     private final @Nullable Consumer<CubixPlayer> onClose;
     private final int backSlot;
     private final @Nullable String art;
+    private final @Nullable Paging paging;
 
     private Menu(
             Component title,
@@ -50,7 +67,9 @@ public final class Menu {
             Map<Integer, Button> buttons,
             @Nullable Consumer<CubixPlayer> onClose,
             int backSlot,
-            @Nullable String art) {
+            @Nullable String art,
+            @Nullable Paging paging) {
+        this.paging = paging;
         this.title = title;
         this.rows = rows;
         this.buttons = Map.copyOf(buttons);
@@ -103,6 +122,27 @@ public final class Menu {
         return Optional.ofNullable(art);
     }
 
+    /** Les pages, si ce menu en a (voir {@link Builder#paged}). */
+    public Optional<Paging> paging() {
+        return Optional.ofNullable(paging);
+    }
+
+    /** Les cases à l'intérieur d'un cadre ({@link Builder#border}) : ce qu'il reste pour une liste. */
+    public static List<Integer> inner(int rows) {
+        List<Integer> slots = new ArrayList<>();
+        for (int row = 1; row < rows - 1; row++) {
+            for (int column = 1; column < COLUMNS - 1; column++) {
+                slots.add(row * COLUMNS + column);
+            }
+        }
+        return List.copyOf(slots);
+    }
+
+    /** Le nombre de pages pour tant d'éléments, tant par page (au moins une). */
+    public static int pageCount(int items, int perPage) {
+        return Math.max(1, (items + perPage - 1) / Math.max(1, perPage));
+    }
+
     /** Appelé quand le joueur ferme le menu (ou quitte le serveur). */
     public Optional<Consumer<CubixPlayer>> onClose() {
         return Optional.ofNullable(onClose);
@@ -117,6 +157,7 @@ public final class Menu {
         private @Nullable Consumer<CubixPlayer> onClose;
         private int backSlot;
         private @Nullable String art;
+        private @Nullable Paging paging;
 
         private Builder(Component title, int rows) {
             this.title = title;
@@ -203,8 +244,39 @@ public final class Menu {
             return this;
         }
 
+        /**
+         * Met la page {@code page} (comptée de 0) de cette liste dans les cases {@code slots}, dans
+         * l'ordre. Les flèches vont en bas, de part et d'autre du milieu ; {@code open} décrit le
+         * menu d'une autre page (le plus simple : la même méthode, avec l'autre numéro).
+         *
+         * <pre>{@code
+         * Menu friends(CubixPlayer player, int page) {
+         *     return Menu.builder(title, 6)
+         *             .paged(buttons, Menu.inner(6), page, other -> friends(player, other))
+         *             .border(frame)
+         *             .build();
+         * }
+         * }</pre>
+         *
+         * <p>Une page hors des bornes est ramenée à la première ou à la dernière.
+         */
+        public Builder paged(List<Button> items, List<Integer> slots, int page, IntFunction<Menu> open) {
+            if (slots.isEmpty()) {
+                throw new IllegalArgumentException("Aucune case pour la liste");
+            }
+            int pages = pageCount(items.size(), slots.size());
+            int shown = Math.clamp(page, 0, pages - 1);
+            int first = shown * slots.size();
+            for (int i = 0; i < slots.size() && first + i < items.size(); i++) {
+                set(slots.get(i), items.get(first + i));
+            }
+            int bottom = (rows - 1) * COLUMNS;
+            this.paging = new Paging(shown, pages, open, bottom + 3, bottom + 5);
+            return this;
+        }
+
         public Menu build() {
-            return new Menu(title, rows, buttons, onClose, backSlot, art);
+            return new Menu(title, rows, buttons, onClose, backSlot, art, paging);
         }
     }
 }
