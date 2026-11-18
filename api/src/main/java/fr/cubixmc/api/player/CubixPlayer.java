@@ -7,6 +7,7 @@ import fr.cubixmc.api.rank.Rank;
 import fr.cubixmc.api.sidebar.Sidebar;
 import fr.cubixmc.api.world.Position;
 import java.util.Locale;
+import java.util.Optional;
 import java.util.UUID;
 import java.util.concurrent.CompletableFuture;
 import java.util.function.Consumer;
@@ -134,4 +135,10 @@ public interface CubixPlayer extends Audience {
 
     /** Est-ce sa première venue sur le réseau ? */
     boolean firstVisit();
+
+    /** Le grade acheté en plus du principal, s'il y en a un. */
+    Optional<Rank> secondaryRank();
+
+    /** Remplit la barre d'expérience : le niveau affiché et la progression (0 à 1). */
+    void showExperience(int level, float progress);
 }

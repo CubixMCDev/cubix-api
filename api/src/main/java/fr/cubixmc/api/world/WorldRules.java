@@ -41,4 +41,7 @@ public interface WorldRules {
 
     /** Le point d'apparition du serveur. */
     Position spawn();
+
+    /** Fige l'heure du monde ({@code 6000} : midi). Le temps ne passe plus, la météo reste claire. */
+    void setFixedTime(long ticks);
 }

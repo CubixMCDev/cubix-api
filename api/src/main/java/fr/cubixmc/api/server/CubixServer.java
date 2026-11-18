@@ -3,6 +3,7 @@ package fr.cubixmc.api.server;
 import fr.cubixmc.api.boost.Boosts;
 import fr.cubixmc.api.cosmetic.Cosmetics;
 import fr.cubixmc.api.daily.DailyRewards;
+import fr.cubixmc.api.economy.Currency;
 import fr.cubixmc.api.player.CubixPlayer;
 import fr.cubixmc.api.progress.Progress;
 import fr.cubixmc.api.rank.Rank;
@@ -13,6 +14,7 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
+import java.util.concurrent.CompletableFuture;
 
 /** Le serveur de jeu courant. */
 public interface CubixServer {
@@ -59,4 +61,13 @@ public interface CubixServer {
     List<Rank> ranks();
 
     Optional<Rank> rank(String id);
+
+    /**
+     * Achète un grade en jeu : le prix est pris, et le grade devient le grade secondaire du joueur
+     * (son étoile ; le grade principal reste le sien). Hors du thread de jeu.
+     */
+    CompletableFuture<RankPurchase> buyRank(CubixPlayer player, String rankId, Currency currency, int price);
+
+    /** Les files d'attente des jeux. */
+    Queues queues();
 }

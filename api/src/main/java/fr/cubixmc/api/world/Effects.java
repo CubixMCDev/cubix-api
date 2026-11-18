@@ -58,4 +58,13 @@ public interface Effects {
      * @param entity type d'entité ({@code minecraft:wolf}…)
      */
     Pet spawnPet(CubixPlayer owner, String entity, Component name);
+
+    /**
+     * Montre un bloc à ce joueur seulement, puis remet le vrai ({@code minecraft:nether_portal} à
+     * l'arrivée, par exemple). Rien ne change dans le monde.
+     */
+    void flashBlock(CubixPlayer viewer, Position at, String block, Duration duration);
+
+    /** De la poussière colorée ({@code 0xAA00FF}), vue de tous. */
+    void dust(Position at, int color, float size, int count, double spread);
 }

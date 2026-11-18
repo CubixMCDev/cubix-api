@@ -41,6 +41,10 @@ public final class Preference<T> {
     /** Effets de sang en jeu. */
     public static final Preference<Boolean> BLOOD = bool("blood", true);
 
+    /** Le nom donné à son familier (vide : celui du cosmétique). Pas dans le menu. */
+    public static final Preference<String> PET_NAME =
+            new Preference<>("pet-name", "", List.of(""), raw -> Optional.of(raw.strip()));
+
     /** Toutes, dans l'ordre du menu. */
     public static final List<Preference<?>> ALL =
             List.of(FRIEND_REQUESTS, PARTY_INVITES, PRIVATE_MESSAGES, PARTY_FOLLOW, SHOW_PLAYERS, BLOOD);

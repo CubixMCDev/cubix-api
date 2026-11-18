@@ -15,6 +15,9 @@ public interface Hotbar {
 
     int SIZE = 9;
 
+    /** Barre rapide (0 à 8) et inventaire (9 à 35) : un objet hors de la barre s'utilise d'un clic. */
+    int INVENTORY = 36;
+
     /**
      * Pose un objet.
      *
@@ -30,4 +33,7 @@ public interface Hotbar {
 
     /** Retire tous les objets posés par les modules. */
     void clearAll();
+
+    /** Sélectionne la case tenue en main (0 à 8). */
+    void select(int slot);
 }
