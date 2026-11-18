@@ -35,6 +35,22 @@ public interface Hud {
     /** La ligne sous la boussole ; {@link Component#empty()} la retire. */
     void line(CubixPlayer player, Component text);
 
+    /**
+     * Deux encadrés posés sur la barre de vie (à gauche) et la barre de nourriture (à droite), pour
+     * un lobby où elles ne servent à rien. Pack requis ; sans lui, les barres restent. Les textes
+     * n'emploient que des lettres sans accent, des chiffres et les symboles ⛃ et ✦ (la police
+     * descendue du pack n'a qu'eux).
+     */
+    void panels(CubixPlayer player, Component left, Component right);
+
+    void clearPanels(CubixPlayer player);
+
+    /**
+     * Le message de la barre d'action. Passer par ici plutôt que {@code sendActionBar} : avec les
+     * encadrés, les deux partagent la même barre.
+     */
+    void actionBar(CubixPlayer player, Component text);
+
     /** Le joueur a-t-il le pack (la boussole lui est visible) ? */
     boolean equipped(CubixPlayer player);
 }

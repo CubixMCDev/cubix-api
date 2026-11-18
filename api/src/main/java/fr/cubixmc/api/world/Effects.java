@@ -65,6 +65,16 @@ public interface Effects {
      */
     void flashBlock(CubixPlayer viewer, Position at, String block, Duration duration);
 
+    /**
+     * L'effet d'un portail du Nether, chez ce joueur seulement : le voile violet qui tourne, le
+     * son d'entrée. Son jeu le dessine lui-même, comme s'il se tenait dans un portail : deux blocs
+     * de portail envoyés à lui seul, à ses pieds et à sa tête. Il est recentré sur son bloc (de
+     * quelques centimètres), ce qui met sa caméra entre les deux faces du portail : il ne voit pas
+     * les blocs, seulement l'effet. L'effet monte en 4 secondes environ puis retombe : 2 à 4
+     * secondes rendent bien. Rien ne change dans le monde.
+     */
+    void portalEffect(CubixPlayer viewer, Duration duration);
+
     /** De la poussière colorée ({@code 0xAA00FF}), vue de tous. */
     void dust(Position at, int color, float size, int count, double spread);
 }
