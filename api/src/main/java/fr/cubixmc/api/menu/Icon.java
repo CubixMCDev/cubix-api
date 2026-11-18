@@ -22,6 +22,8 @@ import org.jspecify.annotations.Nullable;
  *     s'affiche comme une barrière
  * @param amount 1 à 99
  * @param head la tête à afficher, si l'objet est {@code minecraft:player_head}
+ * @param model l'icône dessinée par le pack CubixMC ({@code cubix:menu/rush}), montrée à la place
+ *     de l'objet chez les joueurs qui ont le pack ; les autres voient {@code material}
  */
 public record Icon(
         String material,
@@ -29,7 +31,8 @@ public record Icon(
         List<Component> lore,
         int amount,
         boolean glow,
-        @Nullable Head head) {
+        @Nullable Head head,
+        @Nullable String model) {
 
     public static final String PLAYER_HEAD = "minecraft:player_head";
 
@@ -38,6 +41,11 @@ public record Icon(
         record Owner(String name) implements Head {}
 
         record Texture(String base64) implements Head {}
+    }
+
+    /** Sans icône dessinée. */
+    public Icon(String material, Component name, List<Component> lore, int amount, boolean glow, @Nullable Head head) {
+        this(material, name, lore, amount, glow, head, null);
     }
 
     public Icon {
@@ -73,19 +81,32 @@ public record Icon(
     }
 
     public Icon withLore(List<Component> lines) {
-        return new Icon(material, name, lines, amount, glow, head);
+        return new Icon(material, name, lines, amount, glow, head, model);
     }
 
     public Icon withName(Component newName) {
-        return new Icon(material, newName, lore, amount, glow, head);
+        return new Icon(material, newName, lore, amount, glow, head, model);
     }
 
     public Icon withAmount(int newAmount) {
-        return new Icon(material, name, lore, newAmount, glow, head);
+        return new Icon(material, name, lore, newAmount, glow, head, model);
     }
 
     /** Fait briller l'objet, comme s'il était enchanté. */
     public Icon glowing() {
-        return new Icon(material, name, lore, amount, true, head);
+        return new Icon(material, name, lore, amount, true, head, model);
+    }
+
+    /** Un autre objet (pour qui n'a pas le pack), en gardant l'icône dessinée. */
+    public Icon withMaterial(String newMaterial) {
+        return new Icon(newMaterial, name, lore, amount, glow, head, model);
+    }
+
+    /**
+     * L'icône dessinée par le pack ({@code cubix:menu/rush}) : les joueurs qui ont le pack la
+     * voient à la place de l'objet. Les icônes disponibles sont listées dans le README du pack.
+     */
+    public Icon withModel(String newModel) {
+        return new Icon(material, name, lore, amount, glow, head, newModel);
     }
 }
