@@ -42,18 +42,21 @@ public final class Menu {
     private final Map<Integer, Button> buttons;
     private final @Nullable Consumer<CubixPlayer> onClose;
     private final int backSlot;
+    private final @Nullable String art;
 
     private Menu(
             Component title,
             int rows,
             Map<Integer, Button> buttons,
             @Nullable Consumer<CubixPlayer> onClose,
-            int backSlot) {
+            int backSlot,
+            @Nullable String art) {
         this.title = title;
         this.rows = rows;
         this.buttons = Map.copyOf(buttons);
         this.onClose = onClose;
         this.backSlot = backSlot;
+        this.art = art;
     }
 
     /**
@@ -95,6 +98,11 @@ public final class Menu {
         return backSlot;
     }
 
+    /** Le fond dessiné par le pack, s'il en a un à lui (voir {@link Builder#art}). */
+    public Optional<String> art() {
+        return Optional.ofNullable(art);
+    }
+
     /** Appelé quand le joueur ferme le menu (ou quitte le serveur). */
     public Optional<Consumer<CubixPlayer>> onClose() {
         return Optional.ofNullable(onClose);
@@ -108,6 +116,7 @@ public final class Menu {
         private final Map<Integer, Button> buttons = new HashMap<>();
         private @Nullable Consumer<CubixPlayer> onClose;
         private int backSlot;
+        private @Nullable String art;
 
         private Builder(Component title, int rows) {
             this.title = title;
@@ -183,8 +192,19 @@ public final class Menu {
             return this;
         }
 
+        /**
+         * Le fond que le pack CubixMC dessine pour ce menu, chez les joueurs Java qui l'ont : son
+         * en-tête à ses couleurs, avec son emblème. Noms connus : {@code hub}, {@code profil},
+         * {@code cosmetiques}, {@code social}, {@code minijeux}, {@code boosts}, {@code admin},
+         * {@code sanctions}. Un nom inconnu (ou aucun) donne le fond ordinaire.
+         */
+        public Builder art(String name) {
+            this.art = name;
+            return this;
+        }
+
         public Menu build() {
-            return new Menu(title, rows, buttons, onClose, backSlot);
+            return new Menu(title, rows, buttons, onClose, backSlot, art);
         }
     }
 }

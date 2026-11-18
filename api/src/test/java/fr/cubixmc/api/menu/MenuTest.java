@@ -71,4 +71,11 @@ class MenuTest {
         assertThat(lored.glow()).isTrue();
         assertThat(Icon.head("Pipo", Component.text("Profil")).head()).isEqualTo(new Icon.Head.Owner("Pipo"));
     }
+
+    @Test
+    void artIsOptional() {
+        assertThat(Menu.builder(Component.text("x"), 3).build().art()).isEmpty();
+        assertThat(Menu.builder(Component.text("x"), 3).art("profil").build().art())
+                .contains("profil");
+    }
 }
